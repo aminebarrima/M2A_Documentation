@@ -1,0 +1,2282 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+   <META NAME="Author" CONTENT="Master 2 CCI">
+   <TITLE>Dossier de conception</TITLE>
+   <link rel="stylesheet" type="text/css" href="style_genie.css">
+   
+   <style type="text/css">
+   <!--
+	 @font-face
+		{font-family:Calibri;
+		panose-1:2 15 5 2 2 2 4 3 2 4;}
+	 p.MsoNormal, li.MsoNormal, div.MsoNormal
+		{margin-top:0cm;
+		margin-right:0cm;
+		margin-bottom:10.0pt;
+		margin-left:0cm;
+		line-height:115%;
+		font-size:11.0pt;
+		font-family:"Calibri","sans-serif";}
+	h3
+		{mso-style-link:"Titre 3 Car";
+		margin-right:0cm;
+		margin-left:0cm;
+		font-size:13.5pt;
+		font-family:"Times New Roman","serif";}
+	h4
+		{mso-style-link:"Titre 4 Car";
+		margin-right:0cm;
+		margin-left:0cm;
+		font-size:12.0pt;
+		font-family:"Times New Roman","serif";}
+	p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+		{mso-style-link:"Note de bas de page Car";
+		margin-right:0cm;
+		margin-left:0cm;
+		font-size:12.0pt;
+		font-family:"Times New Roman","serif";}
+	p.MsoHeader, li.MsoHeader, div.MsoHeader
+		{mso-style-link:"En-tête Car";
+		margin-right:0cm;
+		margin-left:0cm;
+		font-size:12.0pt;
+		font-family:"Times New Roman","serif";}
+	p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+		{margin-top:0cm;
+		margin-right:0cm;
+		margin-bottom:10.0pt;
+		margin-left:36.0pt;
+		line-height:115%;
+		font-size:11.0pt;
+		font-family:"Calibri","sans-serif";}
+	p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+		{margin-top:0cm;
+		margin-right:0cm;
+		margin-bottom:0cm;
+		margin-left:36.0pt;
+		margin-bottom:.0001pt;
+		line-height:115%;
+		font-size:11.0pt;
+		font-family:"Calibri","sans-serif";}
+	p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+		{margin-top:0cm;
+		margin-right:0cm;
+		margin-bottom:0cm;
+		margin-left:36.0pt;
+		margin-bottom:.0001pt;
+		line-height:115%;
+		font-size:11.0pt;
+		font-family:"Calibri","sans-serif";}
+	p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+		{margin-top:0cm;
+		margin-right:0cm;
+		margin-bottom:10.0pt;
+		margin-left:36.0pt;
+		line-height:115%;
+		font-size:11.0pt;
+		font-family:"Calibri","sans-serif";}
+	span.Titre3Car
+		{mso-style-name:"Titre 3 Car";
+		mso-style-link:"Titre 3";
+		font-family:"Times New Roman","serif";
+		font-weight:bold;}
+	span.Titre4Car
+		{mso-style-name:"Titre 4 Car";
+		mso-style-link:"Titre 4";
+		font-family:"Times New Roman","serif";
+		font-weight:bold;}
+	span.apple-style-span
+		{mso-style-name:apple-style-span;}
+	span.apple-converted-space
+		{mso-style-name:apple-converted-space;}
+	p.tablecontents, li.tablecontents, div.tablecontents
+		{mso-style-name:tablecontents;
+		margin-right:0cm;
+		margin-left:0cm;
+		font-size:12.0pt;
+		font-family:"Times New Roman","serif";}
+	span.NotedebasdepageCar
+		{mso-style-name:"Note de bas de page Car";
+		mso-style-link:"Note de bas de page";
+		font-family:"Times New Roman","serif";}
+	span.En-tteCar
+		{mso-style-name:"En-tête Car";
+		mso-style-link:En-tête;
+		font-family:"Times New Roman","serif";}
+	.MsoChpDefault
+		{font-family:"Calibri","sans-serif";}
+	.MsoPapDefault
+		{margin-bottom:10.0pt;
+		line-height:115%;}
+	@page WordSection1
+		{size:595.3pt 841.9pt;
+		margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+	div.WordSection1
+		{page:WordSection1;}
+	 ol
+		{margin-bottom:0cm;}
+	ul
+		{margin-bottom:0cm;}
+	-->
+</style>
+</HEAD>
+<BODY>
+
+<CENTER><FONT SIZE=+4>Dossier de conception</FONT></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+
+<H1>
+1- Architecture de haut niveau</H1>
+
+
+<h2>Le site de covoiturage est composé de ces différents modules :</h2>
+<ul>
+	<li><b>Module des inscriptions : </b>
+	Le système doit permettre aux conducteurs et covoitureurs de pouvoir s’inscrire de façon autonome via le site web.
+	</li>
+	<li><b>Module de gestion des itinéraires : </b>
+	Le système doit permettre l’ajout, modification et suppression d’un itinéraire par un conducteur ou un passager. Ces derniers auront accès à tous leurs 
+	itinéraires passés et pourront créer de nouveaux itinéraires à partir d’un itinéraire déjà effectué dans le passé. 
+	Le conducteur pourra fixer le prix voulu de la part des covoitureurs.
+	</li>
+	<li><b>Module de gestion des réservations : </b>
+	Le système doit aussi permettre aux covoitureurs de rechercher des itinéraires. Des recherches peuvent s’effectuer suivant des critères précis. 
+	Suite à l’affichage des résultats le covoitureur peut choisir parmi les plus « intéressants » pour lui. En cas de changement de plan, 
+	un système de notification envers le conducteur ou le passager est disponible (messagerie), afin d'aviser que le passager n’embarque plus avec le conducteur ou
+	que le conducteur souhaite annuler son trajet.
+	</li>
+	<li><b>Module de gestion des comptes : </b>
+	Le système permet à chacun des membres de faire la gestion de son compte. Il sera possible de modifier des informations personnelles ou préférences.
+	</li>
+</ul><br><br>
+
+<h2>Les différentes classes d’usagers du système sont comme suit: </h2>
+<ul>
+	<li><b>Administrateur : </b>
+	L’administrateur est le seul à avoir accès à l’information complète du système. Il peut faire la gestion globale du système, 
+	par exemple créer des comptes de covoitureurs. Il lui est aussi possible de suspendre n’importe quel compte.
+	</li>
+	<li><b>Conducteurs :</b>
+	Les conducteurs permettent d’alimenter le système en itinéraires disponibles pour la recherche. 
+	En effet, c’est la quantité et qualité des conducteurs qui permettront d’avoir une banque de données intéressante dans le système. 
+	Suite à la publication d’un itinéraire, ils sont responsables de vérifier à intervalle régulier s’ils reçoivent des demandes d’embarquement des covoitureurs.
+	 Dans un tel cas, ils sont responsables de confirmer l’embarquement du passager à un point donné. De plus, ils peuvent consulter leur historique d’itinéraires.
+	</li>
+	<li><b>Passagers :</b>
+	Les passagers sont ceux qui bénéficient le plus du système. Ils peuvent lancer diverses recherches pour trouver des itinéraires qui conviennent 
+	à leurs besoins et faire des réservations. Dans le cas où les points d’embarquements conviennent plus ou moins, 
+	ils peuvent envoyer une proposition de point d’embarquement au conducteur. De plus, ils peuvent consulter leur historique de réservations.
+	</li>
+</ul><br><br>
+
+
+
+<h2>Description des modules du site : </h2>
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><b><span style='font-size:14.0pt;
+font-family:"Times New Roman","serif";color:black'>1. Module des inscriptions</span></b></p>
+
+<p class=MsoNormal style='margin-left:43.2pt;text-indent:-43.2pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193127882"><b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>1.1. Demander une inscription</span></b></a></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.1pt;margin-bottom:.0001pt;text-indent:-43.1pt'><span lang=FR-CA>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Acteur:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Covoitureur potentiel (conducteur ou passager)</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Description:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Un covoitureur potentiel désire se créer un compte sur le site de
+covoiturage. Il entre ses informations et un compte lui est créé.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Dépendances:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Aucune.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Pré-condition:</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;Le covoitureur n’a pas déjà un compte.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Post-condition:</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;Le comte est créé et le&nbsp;covoitureur pourra se connecter
+au système.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Scénario</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Acteur</span></b></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Système</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>1. Le futur&nbsp;<span
+  style='color:black'>covoitureur</span> entre ses informations de contact
+  (nom, prénom, date de naissance, sexe, ville, mail, &nbsp;numéro de
+  téléphone) et un mot de passe d’au moins 8 caractères.</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+  style='font-size:12.0pt;font-family:"Times New Roman","serif"'>2.
+  Vérification des informations soumises, création d'un compte</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Exceptions&nbsp;:</span></b></p>
+
+<ol style='margin-top:0cm' start=1 type=1>
+ <li class=MsoNormal style='color:black;margin-bottom:0cm;margin-bottom:.0001pt;
+     text-align:justify;line-height:normal'><i><span lang=FR-CA
+     style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Si les informations
+     sont syntaxiquement invalides</span></i><span lang=FR-CA style='font-size:
+     12.0pt;font-family:"Times New Roman","serif"'>, le futur covoitureur doit
+     corriger les champs en erreur.</span></li>
+ <li class=MsoNormal style='color:black;margin-bottom:0cm;margin-bottom:.0001pt;
+     text-align:justify;line-height:normal'><i><span lang=FR-CA
+     style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Si le futur
+     covoitureur n'a pas renseigné tous les champs nécessaires</span></i><span
+     lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif"'>,
+     il doit bien entrer les informations demandées par le formulaire
+     d'inscription.&nbsp;</span></li>
+</ol>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'><br>
+<br>
+<br>
+<br>
+</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><b><span style='font-size:14.0pt;
+font-family:"Times New Roman","serif"'>2. Module de gestion des comptes</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'><br>
+<br>
+</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193127886"><b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>2.1.</span></b></a><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'> &nbsp;<b>Connexion au
+système</b></span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><b><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><a name=UC5></a><b><span lang=FR-CA
+style='font-size:12.0pt;font-family:"Times New Roman","serif";color:black'>Acteur:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Tous les acteurs, soit les covoitureurs-membres (passagers et
+conducteurs) ou l’administrateur.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Description:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Un usager existant dans le système veut s’y connecter.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Dépendances:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>1.1. Demander une inscription</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Pré-condition:</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;L’usager est inscrit sur le site de covoiturage.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Post-condition:</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;L’usager est connecté au système.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Scénario</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Acteur</span></b></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Système</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>1. L’usager se connecte en
+  entrant&nbsp;son login (mail) et son mot de passe</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+  style='font-size:12.0pt;font-family:"Times New Roman","serif"'>2. Connexion
+  de l’usager au système, création d’une session</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Exceptions&nbsp;:</span></b></p>
+
+<ol style='margin-top:0cm' start=1 type=1>
+ <li class=MsoNormal style='color:black;margin-bottom:0cm;margin-bottom:.0001pt;
+     text-align:justify;line-height:normal'><i><span lang=FR-CA
+     style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Si le
+     système n’a aucune entrée pour ce login ou si le mot de passe est invalide</span></i><span
+     lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif"'>,
+     une erreur est affichée et retour à l’étape 1.</span></li>
+</ol>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'><br>
+<br>
+<br>
+</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193127883"><b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>2.2.</span></b></a><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'> <b>Supprimer son compte</b></span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><b><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><a name=UC2></a><b><span lang=FR-CA
+style='font-size:12.0pt;font-family:"Times New Roman","serif";color:black'>Acteur:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Covoitureur-membre</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Description:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Un covoitureur-membre n’utilise plus son compte et désire le
+supprimer.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Dépendances: </span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>1.1. Demander une inscription</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Pré-condition:</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;Le&nbsp;covoitureur est inscrit sur le site de covoiturage,
+et il est connecté.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Post-condition:</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;Le covoitureur n’est plus inscrit sur le site.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Scénario</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Acteur</span></b></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Système</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>1. Le <span style='color:black'>covoitureur-membre</span>
+  demande la suppression de son compte</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+  style='font-size:12.0pt;font-family:"Times New Roman","serif"'>2. Demande de
+  confirmation au covoitureur</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>3. Acceptation de la confirmation</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+  style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+  style='font-size:12.0pt;font-family:"Times New Roman","serif"'>4. Suppression
+  du compte, déconnexion du système</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Exceptions&nbsp;:</span></b></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt;text-align:justify;text-indent:-21.25pt;
+line-height:normal'><i><span lang=FR-CA style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>1.   Si le covoitureur-membre refuse la
+confirmation</span></i><span lang=FR-CA style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>, la suppression du compte est annulée.</span></p>
+
+<p class=MsoNormal><span lang=FR-CA>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=FR-CA>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193127884"><b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>2.3.</span></b></a><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'> <b>Modifier les
+informations d’un compte</b></span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><b><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><a name=UC3></a><b><span lang=FR-CA
+style='font-size:12.0pt;font-family:"Times New Roman","serif";color:black'>Acteur:
+&nbsp;</span></b><span lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Covoitureur-membre</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Description:&nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Un covoitureur-membre désire modifier ses détails de profil comme
+infos générales, préférences, adresse, mot de passe, véhicule.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Dépendances: &nbsp;</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>1.1. Demander une inscription</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Pré-condition:</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;Le&nbsp;covoitureur est inscrit sur le site, et il est
+connecté.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Post-condition:</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;Les informations personnelles du covoitureur sont modifiées.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Scénario</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Acteur</span></b></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Système</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>1. Le <span style='color:black'>covoitureur-</span>membre
+  entre ses nouvelles informations personnelles</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:6.0pt;line-height:normal'><span
+  style='font-size:12.0pt;font-family:"Times New Roman","serif"'>2.&nbsp;<span
+  style='color:black'>Vérification des informations soumises, sauvegarde des
+  modifications</span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Exceptions&nbsp;:</span></b></p>
+
+<ol style='margin-top:0cm' start=1 type=1>
+ <li class=MsoNormal style='color:black;margin-bottom:0cm;margin-bottom:.0001pt;
+     text-align:justify;line-height:normal'><i><span lang=FR-CA
+     style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Si les
+     informations sont syntaxiquement invalides</span></i><span lang=FR-CA
+     style='font-size:12.0pt;font-family:"Times New Roman","serif"'>, le
+     covoitureur-membre doit corriger les champs en erreur (retour à 1.) .</span></li>
+</ol>
+
+<ol style='margin-top:0cm' start=2 type=1>
+ <li class=MsoNormal style='color:black;margin-bottom:0cm;margin-bottom:.0001pt;
+     text-align:justify;line-height:normal'><i><span lang=FR-CA
+     style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Si
+     le&nbsp;covoitureur-membre n'a pas renseigné tous les champs nécessaires</span></i><span
+     lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif"'>,
+     il doit bien entrer les informations demandées par le système.&nbsp;</span></li>
+</ol>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:14.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-36.0pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193375802"><b><span
+lang=FR-CA style='font-size:14.0pt;font-family:"Times New Roman","serif";
+color:black'>3. Module de gestion des trajets</span></b></a></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193375803"></a><a
+name="_Toc193470921"></a><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>3.1.</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'> <b>Proposer un trajet</b></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Acteur:</span></b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'> Passager, Conducteur</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Description:&nbsp;</span></b><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Le covoitureur-membre crée
+un trajet en désignant une ville de départ, son code postal et un lieu
+d’embarquement ainsi qu'une ville d’arrivée, son code postal et un lieu de
+dépôt des passagers.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Dépendances: </span></b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>2.1. Connexion au
+système&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Pré-condition</span></b><span style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>&nbsp;:&nbsp;</span><span lang=FR-CA
+style='font-size:12.0pt;font-family:"Times New Roman","serif";color:black'>Le&nbsp;covoitureur
+est inscrit sur le site, et il est connecté.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Post-condition</span></b><span style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>&nbsp;: Le trajet est inscrit dans la
+base de données et disponible pour les autres covoitureurs.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><b><span lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Scénario&nbsp;:</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><span lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Acteur</span></b></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span lang=FR-CA style='font-size:
+  12.0pt;font-family:"Times New Roman","serif"'>Système</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>1. Le&nbsp;</span><span
+  style='font-size:12.0pt;font-family:"Times New Roman","serif";color:black'>covoitureur-membre</span><span
+  lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif"'>
+  saisit la suite de points du trajet, ainsi que la date et l’heure. Les
+  conducteurs saisissent également leurs préférences et le prix.</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>2. Le système vérifie les informations
+  saisies</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>3.
+  Le&nbsp;<span style='color:black'>covoitureur-membre</span> approuve la
+  création du trajet</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>4. Le système attribue un numéro
+  d’identification au trajet et&nbsp;<span style='color:black'>l’enregistre
+  dans la base de données</span></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Exceptions&nbsp;:</span></b></p>
+
+<ol style='margin-top:0cm' start=1 type=1>
+ <li class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+     justify;line-height:normal'><i><span style='font-size:12.0pt;font-family:
+     "Times New Roman","serif";color:black'>Les informations saisies sont
+     incorrectes&nbsp;:</span></i><span style='font-size:12.0pt;font-family:
+     "Times New Roman","serif";color:black'> le système affiche un message
+     d’erreur + Répéter depuis l'étape où l'erreur est survenue.</span></li>
+ <li class=MsoNormal style='color:black;margin-bottom:0cm;margin-bottom:.0001pt;
+     text-align:justify;line-height:normal'><i><span style='font-size:12.0pt;
+     font-family:"Times New Roman","serif"'>L’usager désapprouve la création du
+     trajet</span></i><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>
+     : le trajet n’est pas enregistré dans la base de données et n'apparaîtra
+     pas sur le site.</span></li>
+</ol>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-36.0pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193375808"><b><span
+lang=FR-CA style='font-size:14.0pt;font-family:"Times New Roman","serif";
+color:black'>4.</span></b></a><span lang=FR-CA style='font-size:14.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp; <b>Module de gestion
+des réservations</b></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193375809"></a><a
+name="_Toc193470927"></a><b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>4.1</span></b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Réserver une place
+dans un trajet</b></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><a name=UC11></a><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Acteur:&nbsp;</span></b><span style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>Passager</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Description:&nbsp;</span></b><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Un passager effectue une
+réservation à bord d’un itinéraire proposé par un conducteur. Même si c’est un
+autre conducteur dans un autre itinéraire, il est considéré comme étant un
+passager quand il fait une réservation dans un itinéraire.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Dépendances: </span></b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>2.1. Connexion au système,
+3.1. Proposer un trajet</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Pré-condition</span></b><span style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>&nbsp;: Le passager est identifié et
+authentifié.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; Le trajet existe déjà.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; Le nombre de places restantes est non nul.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Post-condition</span></b><span style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>&nbsp;: Le nombre de places dans
+l’itinéraire est décrémenté du nombre de places réservées par le covoitureur.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><b><span lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Scénario&nbsp;:</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><span lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>Acteur</span></b></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>Système</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>1. Le passager effectue une recherche
+  de trajet&nbsp;(ville de départ, celle d'arrivée,&nbsp;date)</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>2. Le système vérifie l’existence
+  effective des informations saisies.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>3. Le système effectue une recherche
+  en fonction des données entrées par le passager et&nbsp;sort des trajets
+  retrouvés en ordre de pertinence.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>4.&nbsp;<span
+  style='color:black'>Le passager choisi le trajet qui lui convient le mieux et
+  réserve sa place en cliquant sur un bouton &quot;Réserver&quot;.</span></span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>5. Le système décrémente le nombre de
+  places dans le trajet.</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Exceptions :</span></b></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='line-height:normal;margin-bottom:0cm;'><i><span style='font-size:12.0pt;
+     font-family:"Times New Roman","serif"'>L’un des deux lieu ou les deux
+     (départ et/ou arrivée) n’existe pas</span></i><span style='font-size:12.0pt;
+     font-family:"Times New Roman","serif"'>&nbsp;: Retour à (1).</span></li>
+ <li class=MsoNormal style='line-height:normal;margin-bottom:0cm;'><i><span style='font-size:12.0pt;
+     font-family:"Times New Roman","serif"'>Aucun trajet ne correspond à la
+     recherche&nbsp;:</span></i><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>
+     Message de notification.</span></li>
+ <li class=MsoNormal style='line-height:normal'><i><span style='font-size:12.0pt;
+     font-family:"Times New Roman","serif"'>Le passager ne trouve aucun trajet
+     qui le satisfasse&nbsp;:</span></i><span style='font-size:12.0pt;
+     font-family:"Times New Roman","serif"'> soit il retourne à l’étape (1),
+     soit il retourne au menu principal.</span></li>
+</ol>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:43.2pt;margin-bottom:.0001pt;text-align:justify;text-indent:-43.2pt;
+line-height:normal;page-break-after:avoid'><a name="_Toc193375810"><b><span
+lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>4.2.</span></b></a><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Rechercher un trajet</b></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><a name=UC12></a><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Acteur:</span></b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'> Futurs covoitureurs ainsi que covoitureurs-membres (conducteurs,
+passagers)</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Description:&nbsp;</span></b><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Un trajet figure dans les
+résultats de recherches tant que la date du voyage est ultérieure à celle du
+jour.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Dépendances: </span></b><span lang=FR-CA style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>2.1. Connexion au système,
+3.1. Proposer un trajet</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Pré-condition</span></b><span style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>&nbsp;: &nbsp;Le trajet existe déjà.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Post-condition</span></b><span style='font-size:12.0pt;font-family:
+"Times New Roman","serif";color:black'>&nbsp;: Le résultat de recherche
+retourné concerne les itinéraires programmés pour une date ultérieure à la date
+courante.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><b><span lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Scénario&nbsp;:</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+normal'><span lang=FR-CA style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>Acteur</span></b></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>Système</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>1. L’usager saisit la ville de départ,
+  celle d'arrivée ainsi que la date du voyage. Il suffit de saisir juste l'un
+  des trois champs proposés pour pouvoir lancer la recherche (casse n'est pas
+  importante).</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>2. Vérification de l'existence des
+  villes</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=293 valign=top style='width:219.5pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>&nbsp;</span></p>
+  </td>
+  <td width=293 valign=top style='width:219.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+  justify;line-height:normal'><span lang=FR-CA style='font-size:12.0pt;
+  font-family:"Times New Roman","serif"'>3. Le système recherche les trajets
+  correspondants aux critères de recherche et les affiche à l’usager.</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><b><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>Exceptions&nbsp;:</span></b></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify;text-indent:-21.8pt;
+line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>L’un des deux lieux n’existe pas&nbsp;:</span></i><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif";color:black'>
+Message d'avertissement + Retour à (1).&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-21.8pt;line-height:
+normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:12.0pt;font-family:"Times New Roman","serif"'>Aucun
+itinéraire ne correspond aux critères de la recherche&nbsp;:</span></i><span
+style='font-size:12.0pt;font-family:"Times New Roman","serif"'> Notification de
+l’inexistence d’aucun résultat pour l’entrée saisie + Retour au menu principal.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:
+justify;line-height:normal'><span style='font-size:12.0pt;font-family:"Times New Roman","serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:115%;font-family:
+"Times New Roman","serif"'>&nbsp;</span></p>
+
+</div><br>
+
+
+<h2>Les diagrammes ci-dessous représentent les diagrammes des cas d’utilisation du site de covoiturage :</h2>
+<div style="margin:auto;font-size:20px;font-weight:bold;">
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/use_case_systeme.png" alt="Use case systeme">
+		<figcaption class="figcaption_screen" style="margin-left:200px;margin-top:20px;">1.1. Diagramme de cas d'utilisation "Système"</figcaption>
+	</div>
+	
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/use_case_rechercher_trajet.png" alt="Use case rechercher trajet">
+		<figcaption class="figcaption_screen" style="margin-left:180px;margin-top:20px;">1.2. Diagramme de cas d'utilisation "Rechercher trajet"</figcaption>
+	</div>
+	
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/use_case_espace_personnel.png" alt="Use case espace personnel">
+		<figcaption class="figcaption_screen" style="margin-left:180px;margin-top:20px;">1.3. Diagramme de cas d'utilisation "Espace personnel"</figcaption>
+	</div>
+	
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/use_case_administration.png" alt="Use case administration">
+		<figcaption class="figcaption_screen" style="margin-left:180px;margin-top:20px;">1.4. Diagramme de cas d'utilisation "Administration"</figcaption>
+	</div>
+</div><br><br>
+
+
+
+
+<h2>Les diagrammes ci-dessous représentent les diagrammes d'activité principaux du système :</h2>
+<div style="margin:auto;font-size:20px;font-weight:bold;">
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/diagramme_activite_inscription.png" alt="Diagramme d'activité inscription">
+		<figcaption class="figcaption_screen" style="margin-left:180px;margin-top:20px;">1.5. Diagramme d'activité "Inscription"</figcaption>
+	</div>
+
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/diagramme_activite_reserver_conducteur.png" alt="Diagramme d'activité reserver conducteur">
+		<figcaption class="figcaption_screen" style="margin-left:180px;margin-top:20px;">1.6. Diagramme d'activité "Réserver conducteur"</figcaption>
+	</div>
+	
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/diagramme_activite_reserver_passager.png" alt="Diagramme d'activité reserver passager">
+		<figcaption class="figcaption_screen" style="margin-left:200px;margin-top:20px;">1.6. Diagramme d'activité "Réserver passager"</figcaption>
+	</div>
+</div><br><br>
+
+<h2>Le modèle conceptuel de données :</h2>
+<div style="margin:auto;font-size:20px;font-weight:bold;">
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/MCD_etucovoiturage.png" alt="MCD">
+		<figcaption class="figcaption_screen" style="margin-left:240px;margin-top:20px;">1.7. Modèle conceptuel de données</figcaption>
+	</div>
+</div>
+
+<h2>Le modèle logique de données :</h2>
+<div style="margin:auto;font-size:20px;font-weight:bold;">
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="diagrammes/MLD_etucovoiturage.png" alt="MCD">
+		<figcaption class="figcaption_screen" style="margin-left:240px;margin-top:20px;">1.8. Modèle logique de données</figcaption>
+	</div>
+</div>
+
+
+
+
+<H1>
+2- Justification de l'architecture</H1>
+
+<p>Le site est développé selon l'architecture hiérarchisée qui une des meilleures façons d'organiser des blocs d'information complexes. 
+Cette architecture s'adapte particulièrement bien au site Web car les différents thèmes dépendent ainsi d'une seule et unique page - 
+la page d'index ou page d'accueil. En outre, les utilisateurs sont souvent familiarisés avec les diagrammes hiérarchisés comme les organigrammes 
+et trouveront la métaphore facilement compréhensible pour les aider dans leur navigation.</p>
+<div style="margin:auto;font-size:20px;font-weight:bold;">
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="images/architecture.gif" alt="architecture">
+		<figcaption class="figcaption_screen" style="margin-left:300px;margin-top:20px;">2.1. Architecture retenue </figcaption>
+	</div>
+</div>
+
+
+<H1>
+3- Description des unit&eacute;s</H1>
+
+<p>Le schéma ci-dessous résume l’architecture détaillée du  site  de covoiturage qui est basé sur deux types de connexions (mode connecté et  non-connecté).</p>
+<div style="margin:auto;font-size:20px;font-weight:bold;">
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="images/architecture_site.png" alt="architecture">
+		<figcaption class="figcaption_screen" style="margin-left:300px;margin-top:20px;">3.1. Architecture du site </figcaption>
+	</div>
+</div>
+
+
+
+<p>Le schéma ci-dessous décrit le fonctionnement de l’espace administrateur.  L’administrateur est le seul à avoir accès à l’information complète du système.
+Il peut faire la gestion globale du système, par exemple suspendre n’importe quel compte.</p>
+<div style="margin:auto;font-size:20px;font-weight:bold;">
+	<div class="prototype_block">
+		<img class="screen_prototype_papier" src="images/architecture_admin.png" alt="architecture">
+		<figcaption class="figcaption_screen" style="margin-left:280px;margin-top:20px;">3.2. Architecture de l'espace admin </figcaption>
+	</div>
+</div>
+
+<h2>Dans cette partie seront expliqu&eacute;s les diff&eacute;rents m&eacute;canismes du fonctionnement technique du site web :</h2>
+<table border="1">
+	<tr>
+		<td style="width:300px;padding:10px;">
+			<h2 style="text-align:center;">Page d'accueil</h2>
+			<img style="display:block;margin:auto;" src="images/dessin1.png">
+		</td>
+		<td style="padding:10px;">
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">La<b
+			style="">
+			page &lsquo;index.php&rsquo;</b> est charg&eacute;e
+			automatiquement lorsque le DNS <i style="">&lsquo;etucovoiturage&rsquo;</i>
+			est saisi dans la barre
+			d&rsquo;adresse du navigateur. Sachant qu&rsquo;il y a une
+			v&eacute;rification de l&rsquo;existence
+			d&rsquo;une session &agrave; l&rsquo;aide de la fonction
+			&lsquo;<i style="">verif_session_var()&rsquo;,
+			</i>si l&rsquo;utilisateur est toujours connect&eacute;,
+			donc &lsquo;index.php&rsquo; redirige
+			automatiquement l&rsquo;utilisateur vers la <b style="">page
+			<i style="">&lsquo;bienvenu.php&rsquo;</i></b>
+			(espace personnel
+			de l&rsquo;utilisateur). Si apr&egrave;s
+			v&eacute;rification aucune session n&rsquo;est
+			d&eacute;tect&eacute;e, l&rsquo;utilisateur
+			reste sur la page <i style="">&lsquo;index.php&rsquo;</i>.<span
+			style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;"><span
+			style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">Un<b
+			style="">
+			utilisateur:<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><o:p></o:p></b></span></p>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol; color: black;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">Etant
+			non connect&eacute;</span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">
+			a la possibilit&eacute; de consulter les offres de
+			trajets g&eacute;n&eacute;r&eacute;es <span style="">&nbsp;</span>par
+			la page &lsquo;results.php&rsquo;.
+			En cliquant sur l&rsquo;annonce qui
+			l&rsquo;int&eacute;resse, la page <i style="">&lsquo;details_not_user.php&rsquo;</i>
+			se lance &agrave; l&rsquo;aide de la fonction JavaScript <i
+			style="">&lsquo;TINY.BOX.SHOW ()&rsquo; </i>et
+			affiche les
+			d&eacute;tails du trajet choisi par l&rsquo;utilisateur. Ce
+			dernier n&rsquo;a pas le droit de
+			r&eacute;server et de contacter l&rsquo;annonceur.<span
+			style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><o:p></o:p></span></li>
+			</ul>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol; color: black;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">Etant
+			connect&eacute;</span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">
+			a la possibilit&eacute; de consulter les offres de trajets
+			g&eacute;n&eacute;r&eacute;es par <span style="">&nbsp;</span>la
+			page &lsquo;result.php&rsquo;. Celle-ci g&egrave;re
+			d&rsquo;une
+			fa&ccedil;on syst&eacute;matique l&rsquo;ensemble de
+			permissions accord&eacute;es &agrave; l&rsquo;utilisateur
+			(par
+			exemple, l&rsquo;utilisateur ne peut pas r&eacute;server une
+			place pour un trajet d&eacute;pos&eacute; par
+			un passager). En cliquant sur l&rsquo;annonce, la page <i
+			style="">&lsquo;details.php&rsquo;</i> se
+			lance &agrave; l&rsquo;aide de la fonction JavaScript <i
+			style="">&lsquo;TINY.BOX.SHOW ()&rsquo; </i>et
+			affiche les
+			d&eacute;tails du trajet choisi par l&rsquo;utilisateur. A
+			l&rsquo;oppos&eacute; du mode non connect&eacute;, ce
+			dernier a le droit de r&eacute;server et de contacter
+			l&rsquo;annonceur.<o:p></o:p></span></li>
+			</ul>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;"><o:p>&nbsp;</o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;"><span
+			style="">&nbsp;</span><o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">Techniquement
+			parlant, l&rsquo;attribution
+			des droits d&eacute;pend de plusieurs conditions,
+			elles-m&ecirc;mes<span style="">&nbsp; </span>d&eacute;pendent
+			de la v&eacute;rification de la session en
+			cours.<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">L&rsquo;utilisateur
+			non connect&eacute; a la
+			possibilit&eacute; de consulter les diff&eacute;rentes
+			informations situ&eacute;es dans le pied de
+			page (A propos, Vos questions sur le covoiturage, Conditions
+			G&eacute;n&eacute;rales
+			d'Utilisation, Les avantages du covoiturage, etc.). Sur ces pages il
+			n&rsquo;y a
+			aucun contr&ocirc;le de session (acc&egrave;s libre).<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"><o:p>&nbsp;</o:p></span></p>
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:300px;padding:10px;">
+			<h2 style="text-align:center;">Formulaire d'inscription <br>Formulaire de connexion <br>Mot de passe oublié</h2>
+			<img style="display:block;margin:auto;" src="images/dessin2.png">
+		</td>
+		<td style="padding:10px;">
+		
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Pour
+			pouvoir b&eacute;n&eacute;ficier de tous les services offerts
+			par le site de covoiturage,
+			l&rsquo;utilisateur doit se connecter. Si c&rsquo;est sa
+			premi&egrave;re visite du site, il devra
+			d&rsquo;abord s&rsquo;inscrire sur le site.<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Une
+			fois sur la <b style="">page <i style="">&lsquo;formulaire.php&rsquo;</i></b>,
+			l&rsquo;utilisateur saisit son nom, pr&eacute;nom, date de
+			naissance, login, mot de passe, ville et num&eacute;ro de
+			t&eacute;l&eacute;phone. Ce formulaire est
+			contr&ocirc;l&eacute; par PHP et JavaScript,
+			derri&egrave;re chaque `input` il y a une fonction qui
+			v&eacute;rifie l&rsquo;exactitude du format
+			d&rsquo;insertion&nbsp;:</span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"><o:p></o:p></span></p>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">verifNom()</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;:
+			v&eacute;rifie l&rsquo;insertion et l&rsquo;exactitude du
+			nom <o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">verifPrenom()</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;:
+			v&eacute;rifie l&rsquo;insertion et l&rsquo;exactitude du
+			pr&eacute;nom <o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">verifMail()</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;:
+			v&eacute;rifie l&rsquo;insertion et l&rsquo;exactitude du
+			mail <o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">mailexist($mail)</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;:
+			v&eacute;rifie la non-existence du mail dans la base de
+			donn&eacute;es <o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">verificationDuUserName()</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;:
+			fait appel </span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> la fonction
+			mailexist($mail)&nbsp; pour la v&eacute;rification de la
+			non-existence du mail<o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">verifPhone()</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;:
+			v&eacute;rifie l&rsquo;insertion et l&rsquo;exactitude du
+			num&eacute;ro de t&eacute;l&eacute;phone<o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">verifMotDePass()</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;:
+			v&eacute;rifie que les deux mots passe saisis sont identiques et
+			qu&rsquo;ils contiennent au moins 8 caract&egrave;res<o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">verifAdress()</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;:
+			v&eacute;rifie l&rsquo;insertion et l&rsquo;exactitude du
+			nom d&rsquo;une ville</span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">insertion()</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">&nbsp;: la
+			fonction charg&eacute;e d&rsquo;ins&eacute;rer les
+			donn&eacute;es saisies dans la
+			base de donn&eacute;es ainsi que d&rsquo;envoyer un mail de
+			confirmation d&rsquo;inscription
+			contenant un lien d&rsquo;activation de l&rsquo;espace membre
+			&agrave; l&rsquo;utilisateur.<o:p></o:p></span></li>
+			</ul>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"><o:p>&nbsp;</o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Si
+			lors de l&rsquo;inscription l&rsquo;utilisateur n&rsquo;a
+			pas renseign&eacute; l&rsquo;un des champs
+			obligatoires, le formulaire se recharge en gardant les valeurs
+			d&eacute;j&agrave; saisies. En
+			cas d&rsquo;erreur, la page reste bloqu&eacute;e en signalant
+			par un message clair l&rsquo;erreur.
+			Concernant le champ login, la fonction <i style="">&lsquo;mailexist($mail)&rsquo;&nbsp;</i>se
+			connecte &agrave; la base de donn&eacute;es et
+			v&eacute;rifie l&rsquo;existence du login indiqu&eacute;
+			par le
+			covoitureur&nbsp;: si c&rsquo;est bien le cas,
+			l&rsquo;utilisateur se tient alors inform&eacute;.<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Le
+			formulaire d&rsquo;inscription dispose &eacute;galement de deux
+			checkboxes et un bouton
+			radio. Le bouton radio tient en consid&eacute;ration le souhait de
+			l&rsquo;utilisateur par
+			rapport &agrave; l&rsquo;affichage de son num&eacute;ro de
+			t&eacute;l&eacute;phone dans les annonces. La
+			premi&egrave;re
+			checkbox concerne les offres des partenaires. Quant &agrave; la
+			seconde, elle sert &agrave;
+			s&rsquo;assurer que l&rsquo;utilisateur confirme avoir lu les
+			Conditions G&eacute;n&eacute;rales
+			d&rsquo;Utilisation du site. Si cette checkbox n&rsquo;est pas
+			coch&eacute;e, une alerte JS incite
+			l&rsquo;utilisateur &agrave; le faire.<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Une
+			fois que le formulaire a bien &eacute;t&eacute; rempli, la
+			fonction <i style="">&lsquo;insertion()&rsquo;</i>
+			se charge de cr&eacute;er l&rsquo;espace personnel de
+			l&rsquo;utilisateur<span style="">&nbsp; </span>ainsi
+			que d&rsquo;envoyer un
+			email contenant un lien d&rsquo;activation &agrave;
+			l&rsquo;adresse mail indiqu&eacute;e lors de
+			l&rsquo;inscription.
+			<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Si
+			l&rsquo;utilisateur essaie de se connecter sans avoir
+			activ&eacute; son compte, un message
+			clair lui est affich&eacute; en l&rsquo;incitant &agrave;
+			activer son compte.<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Sur
+			la <b style="">page <i style="">&lsquo;formulaire.php&rsquo;</i></b>
+			figure <span style="">&nbsp;</span>&eacute;galement
+			le lien de r&eacute;cup&eacute;ration du mot de
+			passe perdu. Si l&rsquo;utilisateur clique sur ce lien,
+			c&rsquo;est la <b style="">page</b> <b
+			style=""><i style="">&lsquo;password_oubli.php&rsquo;</i></b>
+			qui se charge en demandant de saisir son
+			adresse mail </span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> laquelle par
+			la suite sera envoy&eacute; un nouveau mot de passe. Compte
+			tenu du fait que les mots de passe sont stock&eacute;s dans la base
+			de donn&eacute;es sous
+			une forme crypt&eacute;e &agrave; l&rsquo;aide de la
+			fonction de hachage <i style="">&lsquo;md5()&rsquo;
+			(il en d&eacute;duit qu&rsquo;il est impossible de les
+			r&eacute;cup&eacute;rer sous une
+			forme non-crypt&eacute;e)</i>, la fonction <i style="">&lsquo;newChaine()&lsquo;</i>
+			g&eacute;n&egrave;re automatiquement un nouveau mot de passe de
+			8 caract&egrave;res qui remplacera
+			l&rsquo;ancien. Avant d&rsquo;envoyer le nouveau mot de passe,
+			le script v&eacute;rifie aussi que
+			le mail indiqu&eacute; est bien pr&eacute;sent dans la base de
+			donn&eacute;es. <o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Le
+			formulaire de connexion, contr&ocirc;l&eacute; par PHP, permet
+			d&rsquo;acc&eacute;der &agrave; l&rsquo;espace membre.
+			Si les identifiants saisis sont corrects, l&rsquo;utilisateur passe
+			&agrave; la <b style="">page <i style="">&lsquo;bienvenu.php&rsquo;</i></b>,
+			sinon un message clair l&rsquo;informe de l&rsquo;erreur
+			survenue.<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">D&egrave;s
+			que l&rsquo;espace membre a &eacute;t&eacute;
+			cr&eacute;&eacute;, l&rsquo;utilisateur peut
+			d&eacute;sormais b&eacute;n&eacute;ficier de toutes
+			les fonctionnalit&eacute;s du site.<o:p></o:p></span></p>
+
+		
+		
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:300px;padding:10px;">
+			<h2 style="text-align:center;">Rechercher un trajet</h2>
+			<img style="display:block;margin:auto;" src="images/dessin3.png">
+		</td>
+		<td style="padding:10px;">
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">La
+			fonction de restriction d&rsquo;acc&egrave;s aux
+			fonctionnalit&eacute;s de r&eacute;servation et de
+			contact de l&rsquo;annonceur d&rsquo;un trajet est
+			d&eacute;sactiv&eacute;e automatiquement, mais elle
+			v&eacute;rifie
+			constamment que l&rsquo;utilisateur est bien connect&eacute;,
+			sinon elle l&rsquo;invite &agrave; se
+			connecter.<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Pour
+			contacter un abonn&eacute;, le seul moyen est de cliquer sur
+			l&rsquo;onglet `message`
+			figurant dans la fen&ecirc;tre affichant les d&eacute;tails
+			d&rsquo;une annonce (affich&eacute; par
+			JavaScript).</span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> <span
+			style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><o:p></o:p><br>
+			Si
+			l&rsquo;annonce ne provient pas de la part d&rsquo;un passager,
+			l&rsquo;utilisateur a la possibilit&eacute;
+			d&rsquo;effectuer une r&eacute;servation. Une alerte JavaScript
+			le tient inform&eacute; du succ&egrave;s
+			de l&rsquo;op&eacute;ration, et un email
+			r&eacute;capitulatif est envoy&eacute; aux deux parties
+			(passager
+			et conducteur).<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Une
+			fois la r&eacute;servation effectu&eacute;e, le nombre de
+			places est automatiquement d&eacute;cr&eacute;ment&eacute;.
+			S&rsquo;il ne reste plus de places disponibles dans un trajet, la
+			fonctionnalit&eacute;
+			r&eacute;servation est d&eacute;sactiv&eacute;e et la
+			mention `complet` appara&icirc;t sur l&rsquo;annonce.<o:p></o:p></span></p>
+
+
+		
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:300px;padding:10px;">
+			<h2 style="text-align:center;">Déposer un trajet</h2>
+			<img style="display:block;margin:auto;" src="images/dessin4.png">
+		</td>
+		<td style="padding:10px;">
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Dans
+			cette partie (<b style="">&lsquo;<i style="">trajet_user_
+			step_1.php&rsquo;</i></b>), l&rsquo;utilisateur a
+			le choix entre
+			Conducteur et Passager. Il est demand&eacute; de saisir la ville de
+			d&eacute;part + son code
+			postal, lieu de d&eacute;part, ville d&rsquo;arriv&eacute;e
+			+ son code postal et le lieu d&rsquo;arriv&eacute;e.
+			En cliquant sur le bouton &laquo;&nbsp;Valider et Passer
+			&agrave; l&rsquo;&eacute;tape 2&nbsp;&raquo;, on
+			r&eacute;cup&egrave;re
+			la saisie dans des variables de session transportables en pages <b
+			style=""><i style="">&lsquo;trajet_user_
+			step_2.php&rsquo;</i></b> et <b style=""><i
+			style="">&lsquo;trajet_user_ step_3.php&rsquo;</i></b>.<o:p></o:p></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Pour
+			chaque valeur saisie par l&rsquo;utilisateur, il y a des fonctions
+			v&eacute;rifiant l&rsquo;exactitude
+			des formats d&rsquo;insertion des champs&nbsp;:<o:p></o:p></span></p>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">chercherVilleBdd($ville)&nbsp;</span></i></b><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">:</span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> <span
+			style="">&nbsp;</span>s&eacute;lectionne
+			toutes les villes dans la table <i style="">&lsquo;cp_autocomplete&rsquo;.</i><o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">verificationGenerale()&nbsp;</span></i></b><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">:
+			<span style="">&nbsp;</span></span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">la fonction qui
+			v&eacute;rifie la
+			pr&eacute;sence de la ville saisie dans la base de
+			donn&eacute;es en faisant appel </span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> la fonction
+			&lsquo;<i style="">chercherVilleBdd($ville)&rsquo;.
+			</i>Elle v&eacute;rifie aussi le format de saisie du code
+			postal ainsi que des lieux
+			de d&eacute;part et d&rsquo;arriv&eacute;e. En cas
+			d&rsquo;erreur de saisie, un message clair informe
+			l&rsquo;utilisateur.</span></li>
+			</ul>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Dans
+			la <b style="">page <i style="">&lsquo;trajet_user_
+			step_2.php&rsquo;</i></b>, si l&rsquo;utilisateur
+			ne passe pas par la
+			page <i style="">&lsquo;trajet_user_
+			step_1.php&rsquo;,</i> une
+			redirection automatique le renvoie &agrave;
+			l&rsquo;&eacute;tape pr&eacute;c&eacute;dente
+			(v&eacute;rification des
+			variables de session). Il y a deux cas de figure possibles&nbsp;:<span
+			style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span><o:p></o:p></span></p>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Conducteur&nbsp;:</span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> il est
+			demand&eacute; de renseigner la date de d&eacute;part,
+			l&rsquo;heure de d&eacute;part, le nombre de places
+			dans le v&eacute;hicule ainsi que les
+			pr&eacute;f&eacute;rences du trajet (acceptation de fumeurs ou
+			non, animaux). La fonction <i style="">&lsquo;verification()&rsquo;</i>
+			s&rsquo;assure de la bonne saisie, sinon en cas d&rsquo;erreur
+			un message clair est affich&eacute;
+			demandant de bien renseigner les champs concern&eacute;s.<o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Passager&nbsp;:
+			</span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">il
+			est demand&eacute; de renseigner juste la date de d&eacute;part
+			et l&rsquo;heure de d&eacute;part. La
+			fonction <i style="">&lsquo;verification()&rsquo;</i>
+			s&rsquo;assure de
+			la bonne saisie, sinon en cas d&rsquo;erreur un message clair est
+			affich&eacute; demandant de
+			bien renseigner les champs concern&eacute;s.</span></li>
+			</ul>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"></span></p>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Si
+			tout va bien, une redirection vers la <b style="">page
+			&lsquo;trajet_user_ step_3.php&rsquo;</b> est
+			effectu&eacute;e apr&egrave;s avoir cliqu&eacute; sur le
+			bouton <i style="">&lsquo;Valider et passer
+			&agrave; l&rsquo;&eacute;tape 3&rsquo;</i>. Dans
+			la
+			page &lsquo;trajet_user_ step_3.php&rsquo;, si
+			l&rsquo;utilisateur ne passe pas par &lsquo;trajet_user_
+			step_2.php&rsquo;, une redirection automatique le renvoie
+			&agrave; l&rsquo;&eacute;tape
+			pr&eacute;c&eacute;dente
+			(v&eacute;rification des variables de <span style="">&nbsp;</span>session).
+			Il y a deux cas de figure possibles :<o:p></o:p></span></p>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Conducteur&nbsp;:</span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> Il est
+			demand&eacute; &agrave; l&rsquo;utilisateur
+			d&rsquo;indiquer le tarif du trajet par passager. La fonction
+			<i style="">&lsquo;verifPrix()&rsquo;</i>
+			assure l&rsquo;exactitude du
+			format du prix. Ensuite, apr&egrave;s avoir cliqu&eacute; sur
+			le bouton &laquo;&nbsp;Publier
+			l&rsquo;annonce&nbsp;&raquo; la page de
+			r&eacute;capitulatif du trajet appara&icirc;t, la base de
+			donn&eacute;es est aliment&eacute;e et un email de confirmation
+			est envoy&eacute; &agrave; l&rsquo;utilisateur.<o:p></o:p></span></li>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Passager&nbsp;:</span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> dans ce cas
+			l&rsquo;utilisateur passe directement au r&eacute;capitulatif
+			du trajet sans avoir &agrave;
+			renseigner le prix.<o:p></o:p></span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"><o:p><br>
+			&nbsp;</o:p></span></li>
+			</ul>
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">A
+			ce stade, les variables de session correspondant au
+			d&eacute;p&ocirc;t d&rsquo;un trajet sont
+			vid&eacute;es pour permettre une nouvelle proposition de trajet.<o:p></o:p></span></p>
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:300px;padding:10px;">
+			<h2 style="text-align:center;">Mon profil</h2>
+			<img style="display:block;margin:auto;" src="images/dessin5.png">
+		</td>
+		<td style="padding:10px;">
+		
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Dans
+			cette partie du site (<b style=""><i style="">&lsquo;profil.php&rsquo;</i></b>),
+			il y a 6
+			fonctionnalit&eacute;s&nbsp;:<o:p></o:p></span></p>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Mes
+			informations g&eacute;n&eacute;rales</span></i></b><b
+			style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">
+			(<i style="">&lsquo;profil_informations.php&rsquo;</i>)&nbsp;:
+			</span></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">l&rsquo;utilisateur
+			peut modifier son nom, pr&eacute;nom, date de naissance et son
+			num&eacute;ro de t&eacute;l&eacute;phone (tous
+			les champs sauf son login) qui sont sous les m&ecirc;mes
+			v&eacute;rifications que les champs
+			du formulaire d&rsquo;inscription de la page <i style="">&lsquo;formulaire.php&rsquo;</i>
+			. Apr&egrave;s validation les champs dont les valeurs ont
+			&eacute;t&eacute; modifi&eacute;es sont mises &agrave;
+			jour dans la base de donn&eacute;es &agrave; l&rsquo;aide
+			de la fonction <i style="">&lsquo;modfication()&rsquo;</i>.</span></li>
+			</ul>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Mes
+			pr&eacute;f&eacute;rences
+			(&lsquo;profil_preferences.php&rsquo;)&nbsp;:</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> lors de la
+			cr&eacute;ation
+			de l&rsquo;espace personnel les pr&eacute;f&eacute;rences
+			du profil sont par d&eacute;faut mises &agrave;
+			&laquo;&nbsp;non
+			renseign&eacute;&nbsp;&raquo;. Apr&egrave;s la saisie
+			(sous forme de bool&eacute;en) et validation des
+			informations saisies, les mises &agrave; jour sont
+			transf&eacute;r&eacute;es directement dans la
+			base de donn&eacute;es par le biais de la fonction
+			&lsquo;setModification()&rsquo;, et sont d&eacute;sormais
+			visibles dans les annonces de l&rsquo;utilisateur ainsi que sur sa
+			page d&rsquo;accueil.</span></li>
+			</ul>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Mon adresse
+			(&lsquo;profil_adresse.php&rsquo;)&nbsp;:</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> Dans cette
+			page,
+			l&rsquo;utilisateur a la possibilit&eacute; de modifier et/ou
+			d&eacute;tailler son adresse. La
+			saisie de donn&eacute;es est sous le contr&ocirc;le des
+			fonctions PHP (<i style="">verifAdress1() ,
+			verifAdress2(), verifCode(), verifVille(), verifPays()</i>).
+			Une fois tous les champs obligatoires renseign&eacute;s, les mises
+			&agrave; jour sont
+			transf&eacute;r&eacute;es directement dans la base de
+			donn&eacute;es par la fonction <i style="">&lsquo;setModification()&rsquo;&nbsp;,</i>
+			et sont d&eacute;sormais
+			visibles dans les annonces de l&rsquo;utilisateur ainsi que sur sa
+			page d&rsquo;accueil.</span></li>
+			</ul>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Mon mot de
+			passe (&lsquo;profil_password.php&rsquo;)&nbsp;: </span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">dans cette
+			page, il y a trois champs&nbsp;:<o:p></o:p></span></li>
+			</ul>
+			<!--[if !supportLists]-->
+			<ul style="margin-left: 40px;">
+			<li><span style="font-family: Wingdings;"><span
+			style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;
+			</span></span></span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Le premier
+			champ demande </span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">de</span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> renseigner
+			l&rsquo;ancien mot de passe (la fonction <i style="">&lsquo;verifPass()&rsquo;</i>
+			v&eacute;rifiant l&rsquo;&eacute;galit&eacute; du mot
+			passe saisi et celui-ci dans la base de donn&eacute;es
+			crypt&eacute; en md5)<o:p>&nbsp;</o:p></span></li>
+			<li><span style="font-family: Wingdings;"><span
+			style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;
+			</span></span></span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Le
+			deuxi&egrave;me et le troisi&egrave;me champ ont le
+			m&ecirc;me principe de
+			fonctionnement que les deux champs mot de passe du formulaire
+			d&rsquo;inscription sur
+			la page &lsquo;formulaire.php&rsquo; (voir plus haut).&nbsp;<o:p></o:p></span></li>
+			</ul>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Mon
+			v&eacute;hicule (&lsquo;
+			profil_vehicule.php&rsquo;)&nbsp;: </span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Cette page
+			permet d&rsquo;indiquer la marque, le mod&egrave;le et la
+			version du v&eacute;hicule de
+			l&rsquo;utilisateur en pr&eacute;cisant son confort afin
+			d'&ecirc;tre le plus pr&eacute;cis possible. Si
+			l&rsquo;utilisateur ne dispose pas de v&eacute;hicule, il
+			devrait cocher la checkbox correspondant
+			(pas de voiture). Sinon les quatre champs sont obligatoires
+			&agrave; renseigner (contr&ocirc;l&eacute;s
+			par les fonctions <i style="">verifMarque(),
+			verifModele(),
+			verifConfort()</i>). En cas d&rsquo;anomalie, un message
+			d&rsquo;erreur clair est affich&eacute;.</span></li>
+			</ul>
+			<ul>
+			<li><!--[if !supportLists]--><span
+			style="font-family: Symbol;"><span style=""><span
+			style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</span></span></span><!--[endif]--><b
+			style=""><i style=""><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Supprimer mon
+			compte (&lsquo;profil_suppression.php&rsquo;)&nbsp;:</span></i></b><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> dans cette
+			page apr&egrave;s avoir saisi le mot de passe
+			(contr&ocirc;l&eacute; par la fonction <i style="">&lsquo;verifPass()&rsquo;</i>
+			v&eacute;rifiant l&rsquo;&eacute;galit&eacute; entre
+			le mot de passe indiqu&eacute; et celui-ci stock&eacute; dans
+			la base de donn&eacute;es) la fonction
+			&lsquo;<i style="">suppression()&rsquo; </i>d&eacute;clenche
+			la
+			suppression du profil de l&rsquo;utilisateur de la table
+			&lsquo;authentification&rsquo; et en
+			cascade des autres tables. L&rsquo;utilisateur supprime
+			d&eacute;finitivement son espace
+			membre ainsi que ses annonces, ses messages et les trajets
+			d&eacute;pos&eacute;s sur le site.<o:p></o:p></span></li>
+			</ul>
+
+
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:300px;padding:10px;">
+			<h2 style="text-align:center;">Mes messages</h2>
+			<img style="display:block;margin:auto;" src="images/dessin6.png">
+		</td>
+		<td style="padding:10px;">
+		<ul>
+  <li><!--[if !supportLists]--><span
+ style="font-family: Symbol;"><span style=""><span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span></span><!--[endif]--><b
+ style=""><i style=""><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Messages
+re&ccedil;us&nbsp;(&lsquo;read_mail.php&rsquo;):</span></i></b><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> Permet
+d&lsquo;afficher tous les messages destin&eacute;s </span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">
+l&rsquo;utilisateur ainsi que le nombre de messages non lus
+(apparaissant </span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">
+c&ocirc;t&eacute; de la mention &lsquo;Messages
+re&ccedil;us&nbsp;&rsquo; gr&acirc;ce </span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> un script
+associant 0 </span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> un message
+lu et 1 </span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;
+    </span><span style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">un
+message non lu).</span></li>
+</ul>
+<p class="MsoListParagraphCxSpMiddle"
+ style="margin-left: 35.45pt;"><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Si
+aucun message concernant l&rsquo;utilisateur n&rsquo;est
+pr&eacute;sent dans la base de donn&eacute;es,
+&laquo;&nbsp;aucun
+message re&ccedil;u&nbsp;&raquo; est affich&eacute;. A
+partir d&rsquo;une requ&ecirc;te SQL <span style="">&nbsp;</span>r&eacute;cup&eacute;rant<span
+ style="">&nbsp;
+</span>les titres, contenu, date et l&rsquo;heure et
+gr&acirc;ce &agrave; la fonction<span style="">&nbsp;
+</span><i style="">&lsquo;getExpediteur($id)&rsquo;</i>
+on r&eacute;cup&egrave;re l&rsquo;identifiant de
+l&rsquo;exp&eacute;diteur du message <i style="">.</i>
+Un clique sur le titre du message fait appara&icirc;tre une
+fen&ecirc;tre JavaScript
+contenant les d&eacute;tails du message en question ainsi
+qu&rsquo;un champ d&rsquo;une &eacute;ventuelle
+r&eacute;ponse et un bouton d&lsquo;exp&eacute;dition (PHP,
+MySQL, JavaScript). <o:p></o:p></span></p>
+<p class="MsoListParagraphCxSpMiddle"
+ style="margin-left: 35.45pt;"><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"><o:p>&nbsp;</o:p></span></p>
+<ul>
+  <li><!--[if !supportLists]--><span
+ style="font-family: Symbol;"><span style=""><span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span></span></span><!--[endif]--><b
+ style=""><i style=""><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Messages
+envoy&eacute;s&nbsp;(&lsquo;mail_sent.php&rsquo;):</span></i></b><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> Permet
+d&lsquo;afficher tous les messages envoy&eacute;s par
+l&rsquo;utilisateur aux autres covoitureurs,
+et cela </span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+ style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> partir
+d&rsquo;une requ&ecirc;te SQL r&eacute;cup&eacute;rant<span
+ style="">&nbsp; </span>les titres, contenu, date
+et l&rsquo;heure et la
+fonction <i style="">&lsquo;getDestinataire($id)&rsquo;</i>
+qui r&eacute;cup&egrave;re
+l&rsquo;identifiant du destinataire du message. Si
+l&rsquo;utilisateur n&rsquo;a envoy&eacute; aucun
+message, &laquo;&nbsp;aucun message
+envoy&eacute;&nbsp;&raquo; est affich&eacute;.<o:p></o:p></span></li>
+</ul>
+
+
+
+
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:300px;padding:10px;">
+			<h2 style="text-align:center;">Mes annonces</h2>
+			<img style="display:block;margin:auto;" src="images/dessin7.png">
+		</td>
+		<td style="padding:10px;">
+		
+			<p class="MsoNormal"><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Cette
+			<b style="">page (<i style="">&lsquo;annonces.php&rsquo;</i>)</b>&nbsp;affiche
+			l&rsquo;historique des annonces sous
+			forme de tableau: type d&rsquo;annonce (conducteur/passager), ville
+			de d&eacute;part, ville
+			d&rsquo;arriver, date, heure, nombre de places
+			r&eacute;serv&eacute;es et prix. Tout cela gr&acirc;ce </span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> une fonction
+			r&eacute;cup&eacute;rant </span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+			style="font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"> partir
+			d&rsquo;une
+			requ&ecirc;te SQL les informations ci-dessus. Si
+			l&rsquo;utilisateur n&rsquo;a publi&eacute; aucune annonce,
+			&laquo;&nbsp;aucune annonce&nbsp;&raquo; est
+			affich&eacute;.<o:p></o:p></span></p>
+
+		
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:300px;padding:10px;">
+			<h2 style="text-align:center;">Mes réservations</h2>
+			<img style="display:block;margin:auto;" src="images/dessin8.png">
+		</td>
+		<td style="padding:10px;">
+		
+			<span style="font-size: 12pt; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">Cette
+			<b style="">page (<i style="">&lsquo;reservation.php&rsquo;</i>)</b>&nbsp;affiche
+			l&rsquo;historique des annonces sous forme de tableau&nbsp;:
+			ville de d&eacute;part, ville
+			d'arriv&eacute;e, date de d&eacute;part, heure de
+			d&eacute;part, nom du conducteur et prix.<span style="">&nbsp;
+			</span>Tout cela gr&acirc;ce </span><span
+			style="font-size: 12pt; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+			style="font-size: 12pt; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">
+			une fonction r&eacute;cup&eacute;rant </span><span
+			style="font-size: 12pt; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; color: black;">&agrave;</span><span
+			style="font-size: 12pt; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;">
+			partir d&rsquo;une requ&ecirc;te SQL les informations
+			ci-dessus. Et si l&rsquo;utilisateur n&rsquo;a
+			effectu&eacute; aucune r&eacute;servation,
+			&laquo;&nbsp;aucune
+			r&eacute;servation&nbsp;&raquo; est affich&eacute;.</span>
+
+		</td>
+	</tr>
+</table>
+
+<H1>
+4- Description de l'interface utilisateur</H1>
+<p>Cette partie est décrite dans la partie <a href="besoin.htm">Définitions des besoins</a></p><br>
+<HR WIDTH="100%">
+<BR><A HREF="acceuil.htm">Etucovoiturage</A>
+</BODY>
+</HTML>
