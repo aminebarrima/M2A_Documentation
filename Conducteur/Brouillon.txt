@@ -43,6 +43,12 @@ type de la voitures (Citadine, Berline ...)
 Couleur (Liste)
 Année
 
+Inscription :
+-------------
+Email - Nom - Prenom - Naissance - Sexe - Password
+Num tel (Pas obligatoire)
+Envoi de mail de confirmation
+
 
 
 
@@ -55,6 +61,9 @@ Remarques :
 Boutton proposer trajet
 Voiture pas obligatoire
 Piece d'identité pas obligatoire
+User friendly (chaque champ dans une page ou onglet)
+Saisie sous forme de question
+Possibilé de reservation sans 
 
 
 
