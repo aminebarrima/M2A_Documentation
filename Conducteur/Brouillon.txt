@@ -1,0 +1,63 @@
+Pour le conducteur : 
+Gestion du compte (Espace perso, consultation historique voyages)
+Authentification
+Gestion des trajets (selection d'itineraire, fixation du prix, consultation annonces)
+Verification, confirmation et annulation des reservations passagers
+Gestion des messages (Ecrire et lire les messages)
+Mailing + SMS
+
+---------------------------------------
+Proposition du trajet :
+-----------------------
+
+Proposer un trajet (Necessite une authetification)
+Deux possibilités (Facebook, email-password)
+Saisie ville de départ (Proposition ville) => une carte s'affiche indiquant la ville de départ
+Saisie de l'adresse précise (Proposition adresse) => pour proposer aux gens habitant pas loin
+Saisie ville d'arrivé (Proposition ville) => une carte s'affiche indiquant la ville d'arrivée
+Saisie de l'adresse précise (Proposition adresse) => pour proposer aux gens habitant pas loin
+Ajout des étapes (Proposition des étapes et possibilité de saisie).
+Proposition du meilleur endroit pour s'arrêter dans la ville étape. (possibilité de saisir autre adresse)
+Date de départ + heure de départ
+Nombre de passagers (Compteur de 1 à 4)
+Reservation automatique ou avec confirmation du conducteur
+Recommandation de prix (Possibilité de modification {min-max})
+Publication du trajet retour
+proposition d'assurance (Accident)
+Message du conducteur
+
+Consultation des trajet (Plan de route):
+-----------------------------------------
+Affichage détail des trajet en cours avec liste des passagers (Nombre de vues).
+Possibilité de modifier (Date, heure, prix, nombre de places)
+Possibilité de dupliquer l'annonce
+Possibilité d'annuler l'annonce
+Consultation de l'historique des trajets
+
+Gestion des vehicules : 
+-----------------------
+numéro de plaque. (Pas obligatoire)
+la marque (Proposition des marques les plus recherchées)
+modele (Proposition des modeles courants)
+type de la voitures (Citadine, Berline ...)
+Couleur (Liste)
+Année
+
+
+
+
+
+
+
+
+Remarques : 
+-----------
+Boutton proposer trajet
+Voiture pas obligatoire
+Piece d'identité pas obligatoire
+
+
+
+
+
+
